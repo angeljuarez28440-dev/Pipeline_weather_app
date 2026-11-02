@@ -1,2 +1,4 @@
 # Pipeline_weather_app
 Used to build understanding on pipelines.
+Indigetion:
+As of right now, my understanding is this: the codebase will build a connection to the desired API and will set limits for the codebase, or script, to wait 10 seconds per request and make only three attempts. It has limited attempts to access information from the API and a limited time for each request, along with a location of data/raw/. Using preset parameters from the API, I will call those parameters by using the latitude and longitude of each city, thus asking for parameters based on the cities’ coordinates. Then the codebase will request said parameters and will run through a try block. This block will try three times before raising an error. A logging method will make sure to record all errors, attempts of the request, and outcomes. Finally, it stores all information in a JSON file in the desired preset location.

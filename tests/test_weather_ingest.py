@@ -43,3 +43,10 @@ def test_save_raw_writes_valid_json(tmp_path):
     assert path.exists()
     assert path.name.startswith("atlanta_")
     assert json.loads(path.read_text()) == FAKE_RESPONSE
+
+def test_correct_coordinates_are_used():
+    with patch("ingestion.weather_ingest.requests.get", return_value=_mock_ok_response()) as mock_get:
+        weather_ingest.fetch_weather(33.749, -84.388)
+    mock_get.assert_called_once()
+    call_args = mock_get.call_args[1]
+    assert call_args["params"]["latitude"] == 33.749
